@@ -1,0 +1,2 @@
+# letsgetitJS
+Practicing with JS
