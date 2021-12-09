@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -15,35 +15,53 @@
     <button>입력</button>
 
     <script>
-
-        const number = parseInt(prompt("몇 명이 참가하나요?"),10);
+        const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
         const $button = document.querySelector('button');
         const $input = document.querySelector('input');
+        const $order = document.querySelector('order');
         // const $word = document.querySelector('#word');
         let word; //제시어
         let newWord; //새로 입력한 단어
-        
 
         const onClickButton = () => {
-            if (!word){ //제시어가 비어있다
-                word=newWord;
+            if (!word) { //제시어가 비어있다
+                word = newWord;
                 // $word.textContent = word;
-                document.getElementById("word").innerText=word;
-                $input.value= '';
-            }
-            else { //제시어가 있음
+                document.getElementById("word").innerText = word;
+                $input.value = '';
+
+                const order = Number($order.textContent);
+                if (order + 1 > number) {
+                    $order.textContent = 1;
+                } else {
+                $order.textContent = order + 1;
+                }
+            } else { //제시어가 있음
+                if (word[word.length - 1] === newWord[0]) {
+                    word = newWord;
+                    document.getElementById("word").innerText = word;
+                    $input.value = '';
+
+                    const order = Number($order.textContent);
+                    if (order + 1 > number) {
+                        $order.textContent = 1;
+                    } else {
+                        $order.textContent = order + 1;
+                    }
+                } else {
+
+                }
 
             }
         };
 
-        const onInput = (event)=>{
-            newWord=event.target.value;
+        const onInput = (event) => {
+            newWord = event.target.value;
 
         };
 
-        $button.addEventListener('click',onClickButton);
-        $input.addEventListener('input',onInput);
-
+        $button.addEventListener('click', onClickButton);
+        $input.addEventListener('input', onInput);
     </script>
 
 
