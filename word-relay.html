@@ -19,7 +19,7 @@
         const number = parseInt(prompt("몇 명이 참가하나요?"),10);
         const $button = document.querySelector('button');
         const $input = document.querySelector('input');
-        const $word = document.querySelector('#word');
+        // const $word = document.querySelector('#word');
         let word; //제시어
         let newWord; //새로 입력한 단어
         
@@ -27,7 +27,8 @@
         const onClickButton = () => {
             if (!word){ //제시어가 비어있다
                 word=newWord;
-                $word.textContent = word;
+                // $word.textContent = word;
+                document.getElementById("word").innerText=word;
                 $input.value= '';
             }
             else { //제시어가 있음
