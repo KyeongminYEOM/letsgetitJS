@@ -18,29 +18,33 @@
         const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
         const $button = document.querySelector('button');
         const $input = document.querySelector('input');
-        const $order = document.querySelector('order');
-        // const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
+        const $word = document.querySelector('#word');
+        
         let word; //제시어
         let newWord; //새로 입력한 단어
 
         const onClickButton = () => {
             if (!word) { //제시어가 비어있다
                 word = newWord;
-                // $word.textContent = word;
-                document.getElementById("word").innerText = word;
+                $word.textContent = word;
+                // document.getElementById("word").innerText = word;
                 $input.value = '';
+                $input.focus();
 
                 const order = Number($order.textContent);
                 if (order + 1 > number) {
                     $order.textContent = 1;
                 } else {
-                $order.textContent = order + 1;
+                    $order.textContent = order + 1;
                 }
             } else { //제시어가 있음
                 if (word[word.length - 1] === newWord[0]) {
                     word = newWord;
-                    document.getElementById("word").innerText = word;
+                    $word.textContent = word;
+                    // document.getElementById("word").innerText = word;
                     $input.value = '';
+                    $input.focus();
 
                     const order = Number($order.textContent);
                     if (order + 1 > number) {
@@ -49,9 +53,13 @@
                         $order.textContent = order + 1;
                     }
                 } else {
+                    alert('올바르지 않은 단어입니다. 게임종료')
+                    $input.value='';
+                    $order.textContent = 1;
+                    $word.textContent = '';
+                    $input.focus();
 
                 }
-
             }
         };
 
