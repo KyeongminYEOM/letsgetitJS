@@ -10,58 +10,48 @@
 
 <body>
     <div><span id="order">1</span>번째 참가자</div>
-    <div>제시어: <span id="word"></span></div>
+    <div>제시어: <span id="word">< /span></div>
     <input type="text">
     <button>입력</button>
 
     <script>
         const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+        const yesorno = confirm('입력하신 게 맞나요?');
+
         const $button = document.querySelector('button');
         const $input = document.querySelector('input');
         const $order = document.querySelector('#order');
         const $word = document.querySelector('#word');
-        
+
         let word; //제시어
         let newWord; //새로 입력한 단어
 
-        const onClickButton = () => {
-            if (!word) { //제시어가 비어있다
-                word = newWord;
-                $word.textContent = word;
-                // document.getElementById("word").innerText = word;
-                $input.value = '';
-                $input.focus();
-
-                const order = Number($order.textContent);
-                if (order + 1 > number) {
-                    $order.textContent = 1;
-                } else {
-                    $order.textContent = order + 1;
-                }
-            } else { //제시어가 있음
-                if (word[word.length - 1] === newWord[0]) {
+        while (yesorno == false){
+        const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+        const yesorno = confirm('입력하신 게 맞나요?');
+        };
+    
+            const onClickButton = () => {
+                if (!word || word[word.length - 1] === newWord[0]) { //제시어가 비어있다
                     word = newWord;
                     $word.textContent = word;
                     // document.getElementById("word").innerText = word;
-                    $input.value = '';
-                    $input.focus();
-
                     const order = Number($order.textContent);
                     if (order + 1 > number) {
                         $order.textContent = 1;
                     } else {
                         $order.textContent = order + 1;
                     }
-                } else {
+                } else { //제시어가 있음
                     alert('올바르지 않은 단어입니다. 게임종료')
-                    $input.value='';
                     $order.textContent = 1;
                     $word.textContent = '';
-                    $input.focus();
-
                 }
-            }
-        };
+
+                $input.value = '';
+                $input.focus();
+            };
+        
 
         const onInput = (event) => {
             newWord = event.target.value;
